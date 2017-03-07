@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Sample Category"
+            id="com.sogeti.rental.ui">
+      </category>
+      <view
+            name="Sample View"
+            inject="true"
+            icon="icons/sample.gif"
+            category="com.sogeti.rental.ui"
+            class="com.sogeti.rental.ui.views.SampleView"
+            id="com.sogeti.rental.ui.views.SampleView">
+      </view>
+      <category
+            id="com.sogeti.rental.ui.category2"
+            name="Rental">
+      </category>
+      <view
+            category="com.sogeti.rental.ui.category2"
+            class="com.sogeti.rental.ui.views.RentalPropertyView"
+            id="com.sogeti.rental.ui.viewRental"
+            name="Rental Property"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               ratio="0.5"
+               relative="org.eclipse.ui.views.ProblemView"
+               relationship="right"
+               id="com.sogeti.rental.ui.views.SampleView">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+
+</plugin>
