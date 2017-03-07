@@ -36,14 +36,17 @@ public class RentalPropertyView extends ViewPart {
 		
 		GridData gd2 = new GridData(); 
 		gd2.horizontalAlignment = SWT.FILL;
-		
+		gd2.horizontalSpan = 1;
 		Label label = new Label(infoGroup, SWT.BORDER);
 		label.setText("Loué à");
 		label.setLayoutData(gd2);
-		
+		 
+		GridData gd3 = new GridData(); 
+		gd3.horizontalAlignment = SWT.FILL;
+		gd3.horizontalSpan = 1;
 		tName = new Label(infoGroup, SWT.BORDER);
 		tName.setText("");
-		label.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
+		label.setLayoutData(gd3);
 		
 		setRental(RentalCoreActivator.getAgency().getRentals().get(0));
 		
