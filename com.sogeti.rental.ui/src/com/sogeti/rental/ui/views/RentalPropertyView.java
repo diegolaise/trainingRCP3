@@ -28,32 +28,29 @@ public class RentalPropertyView extends ViewPart {
 		infoGroup.setText("Informations");
 		infoGroup.setLayout(new GridLayout(2, false));
 		
-		Label rentedObjectLabel = new Label(infoGroup, SWT.BORDER);
+		rentedObjectLabel = new Label(infoGroup, SWT.BORDER);
 		GridData gd = new GridData();
 		gd.horizontalSpan = 2;
 		gd.horizontalAlignment = SWT.FILL;
 		rentedObjectLabel.setLayoutData(gd);
 		
-		GridData gd2 = new GridData(); 
-		gd2.horizontalAlignment = SWT.FILL;
-		gd2.horizontalSpan = 1;
+		gd = new GridData(); 
 		Label label = new Label(infoGroup, SWT.BORDER);
+		gd.horizontalAlignment = SWT.FILL;
 		label.setText("Loué à");
-		label.setLayoutData(gd2);
+		label.setLayoutData(gd);
 		 
-		GridData gd3 = new GridData(); 
-		gd3.horizontalAlignment = SWT.FILL;
-		gd3.horizontalSpan = 1;
+		gd = new GridData(); 
+		gd.horizontalAlignment = SWT.FILL;
 		tName = new Label(infoGroup, SWT.BORDER);
 		tName.setText("");
-		label.setLayoutData(gd3);
+		label.setLayoutData(gd);
 		
 		setRental(RentalCoreActivator.getAgency().getRentals().get(0));
 		
 	}
 
 	private void setRental(Rental rental) {
-		// TODO Auto-generated method stub
 		rentedObjectLabel.setText(rental.getRentedObject().getName());
 		tName.setText(rental.getCustomer().getDisplayName());
 	}
