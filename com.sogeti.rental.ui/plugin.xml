@@ -11,8 +11,17 @@
       <view
             category="com.sogeti.rental.ui.category2"
             class="com.sogeti.rental.ui.views.RentalPropertyView"
+            icon="icons/RentalObjects.png"
             id="com.sogeti.rental.ui.viewRental"
             name="Rental Property"
+            restorable="true">
+      </view>
+      <view
+            category="com.sogeti.rental.ui.category2"
+            class="com.sogeti.rental.ui.views.AgencyView"
+            icon="icons/Agency.png"
+            id="com.sogeti.rental.ui.AgencyView"
+            name="Agency View"
             restorable="true">
       </view>
    </extension>
