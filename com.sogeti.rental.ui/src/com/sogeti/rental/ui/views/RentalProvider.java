@@ -13,40 +13,38 @@ import org.eclipse.swt.widgets.Display;
 import com.opcoach.training.rental.Customer;
 import com.opcoach.training.rental.RentalAgency;
 import com.opcoach.training.rental.RentalObject;
-import com.sogeti.rental.ui.Activator;
+import com.sogeti.rental.ui.Activator; 
 
-public class RentalProvider extends LabelProvider implements ITreeContentProvider, IColorProvider {
+public class RentalProvider extends LabelProvider implements ITreeContentProvider, IColorProvider, RentalUIConstants {
 
-	private static final String OBJETS_À_LOUER = "Objets à louer"; 
-	private static final String LOCATIONS = "Locations"; 
-	private static final String CUSTOMERS = "Customers";
-
+ 
 	private static final Object[] EMPTY_RESULT = new  Object[0];
  
 	
 	private class Node {
 		private RentalAgency _agency;
 		private String 		_label;
-		private String 		_img;
+		private IMG 		_img;
+		//private Color       _color;
 		
-		public Node(RentalAgency ag, String lbl, String img) {
+		public Node(RentalAgency ag, String lbl) {
 			_agency = ag;
-			_label = lbl;
-			_img = img;
+			_label = lbl; 
+			_img = IMG.getImg(_label);
 		}
 		
-		public String getImage() {
+		public IMG getImage() {
 			return _img;
 		}
 		
 		public Object[] getChildren() {
-			if (CUSTOMERS.equals(_label) )
+			if ( CUSTOMERS.equals(_label) )
 				return _agency.getCustomers().toArray();
 			
-			if (LOCATIONS.equals(_label) )
+			if ( LOCATIONS.equals(_label) )
 				return _agency.getRentals().toArray();
 			
-			if (OBJETS_À_LOUER.equals(_label) )
+			if ( OBJETS_À_LOUER.equals(_label) )
 				return _agency.getObjectsToRent().toArray();
 			
 			return EMPTY_RESULT;
@@ -54,8 +52,7 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 
 		public String getLabel() { 
 			return _label;
-		}
-		
+		} 
 	};
 
 
@@ -73,9 +70,10 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 
 		if (parentElement instanceof RentalAgency) {
 			RentalAgency ag  = (RentalAgency) parentElement;
-			return new Node[] { new Node(ag, CUSTOMERS, Activator.ICONS_CUSTOMERS_PNG)
-						, new Node(ag, LOCATIONS, Activator.ICONS_RENTALS_PNG)
-						, new Node(ag, OBJETS_À_LOUER, Activator.ICONS_RENTAL_OBJECTS_PNG)};  
+			return new Node[] { new Node(ag,  CUSTOMERS)
+						, new Node(ag,  LOCATIONS) 
+						, new Node(ag,  OBJETS_À_LOUER)
+						};  
 		} 
 		
 		if (parentElement instanceof Node) {
@@ -124,19 +122,22 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 	 */
 	@Override
 	public Image getImage(Object element) {
+		IMG path = null;
 		if (element instanceof RentalAgency) {
-			return Activator.getDefault().getImageRegistry().get( Activator.AGENCGY_IMG );
+			path = IMG.AGENCGY_IMG;
 		}
 		
-		if (element instanceof Node) {
-			return Activator.getDefault().getImageRegistry().get( ((Node)element).getImage());
+		else if (element instanceof Node) {
+			path =  ((Node)element).getImage();
 		} 
 		
-		if (element instanceof Customer) {
-			return Activator.getDefault().getImageRegistry().get( Activator.USER_IMG );
+		else if (element instanceof Customer) {
+			path =  IMG.USER_IMG ;
 		}
 	
-		return null; 
+		if (path==null) return null;
+		
+		return Activator.getDefault().getImageRegistry().get(path.name()); 
 	}
 
 	@Override
