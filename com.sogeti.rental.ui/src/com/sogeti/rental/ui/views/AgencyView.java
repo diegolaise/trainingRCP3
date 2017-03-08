@@ -2,6 +2,9 @@ package com.sogeti.rental.ui.views;
 
 import java.util.Arrays;
 
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -16,11 +19,9 @@ import org.eclipse.ui.part.ViewPart;
 import com.opcoach.training.rental.Customer;
 import com.opcoach.training.rental.RentalAgency;
 import com.opcoach.training.rental.RentalFactory;
-import com.sogeti.rental.core.RentalCoreActivator;
-import com.sogeti.rental.ui.Activator;
-import com.sogeti.rental.ui.views.RentalUIConstants.IMG;
+import com.sogeti.rental.core.RentalCoreActivator; 
 
-public class AgencyView extends ViewPart {
+public class AgencyView extends ViewPart{
 
 	public AgencyView() {
 		// TODO Auto-generated constructor stub
@@ -44,7 +45,7 @@ public class AgencyView extends ViewPart {
 		gd_button_1.widthHint = 21;
 		button_1.setLayoutData(gd_button_1);
 		button_1.setText("-");
-		//button_1.setImage( Activator.getDefault().getImageRegistry().get(IMG.ICONS_COLLAPSE.name()) ); // IMG.getImg("-").path()));
+		//button_1.setImage( Activator.getDefault().getImageRegistry().get(IMG.ICONS_COLLAPSE.name()) );
 		button_1.setToolTipText("Collapse All");
 				
 		TreeViewer tree = new TreeViewer(parent);
@@ -80,12 +81,15 @@ public class AgencyView extends ViewPart {
 				tree.collapseAll();
 			}
 		});
+		
+		//Set provider to this
+		getSite().setSelectionProvider(tree);
 	}
 
 	@Override
 	public void setFocus() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }

@@ -13,7 +13,7 @@ import org.eclipse.swt.widgets.Display;
 import com.opcoach.training.rental.Customer;
 import com.opcoach.training.rental.RentalAgency;
 import com.opcoach.training.rental.RentalObject;
-import com.sogeti.rental.ui.Activator; 
+import com.sogeti.rental.ui.RentalUIActivator; 
 
 public class RentalProvider extends LabelProvider implements ITreeContentProvider, IColorProvider, RentalUIConstants {
 
@@ -137,7 +137,7 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 	
 		if (path==null) return null;
 		
-		return Activator.getDefault().getImageRegistry().get(path.name()); 
+		return RentalUIActivator.getDefault().getImageRegistry().get(path.name()); 
 	}
 
 	@Override

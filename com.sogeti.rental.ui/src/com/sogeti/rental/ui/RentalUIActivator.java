@@ -12,20 +12,20 @@ import com.sogeti.rental.ui.views.RentalUIConstants;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUIPlugin implements RentalUIConstants {
+public class RentalUIActivator extends AbstractUIPlugin implements RentalUIConstants {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "com.sogeti.rental.ui"; //$NON-NLS-1$
 
 	// The shared instance
-	private static Activator plugin;
+	private static RentalUIActivator plugin;
 	
 
 	
 	/**
 	 * The constructor
 	 */
-	public Activator() {
+	public RentalUIActivator() {
 	}
 
 	/*
@@ -51,7 +51,7 @@ public class Activator extends AbstractUIPlugin implements RentalUIConstants {
 	 *
 	 * @return the shared instance
 	 */
-	public static Activator getDefault() {
+	public static RentalUIActivator getDefault() {
 		return plugin;
 	}
 
