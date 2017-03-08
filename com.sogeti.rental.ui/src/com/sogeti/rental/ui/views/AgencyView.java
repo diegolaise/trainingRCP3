@@ -2,9 +2,6 @@ package com.sogeti.rental.ui.views;
 
 import java.util.Arrays;
 
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -21,10 +18,15 @@ import com.opcoach.training.rental.RentalAgency;
 import com.opcoach.training.rental.RentalFactory;
 import com.sogeti.rental.core.RentalCoreActivator; 
 
-public class AgencyView extends ViewPart{
+public class AgencyView extends ViewPart {
 
 	public AgencyView() {
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void setFocus() {
+		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -86,10 +88,5 @@ public class AgencyView extends ViewPart{
 		getSite().setSelectionProvider(tree);
 	}
 
-	@Override
-	public void setFocus() {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

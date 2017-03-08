@@ -16,7 +16,6 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 
-import com.opcoach.training.rental.Customer;
 import com.opcoach.training.rental.Rental;
 import com.sogeti.rental.core.RentalCoreActivator;
 
@@ -102,8 +101,7 @@ public class RentalPropertyView extends ViewPart implements ISelectionListener {
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
 		dateDebut.setText(formatter.format(rental.getStartDate()));
-		dateFin.setText(formatter.format(rental.getEndDate()));
-		
+		dateFin.setText(formatter.format(rental.getEndDate()));		
 	}
 	
 	public void init(IViewSite site) throws PartInitException{ 
@@ -118,8 +116,7 @@ public class RentalPropertyView extends ViewPart implements ISelectionListener {
 
 	@Override
 	public void setFocus() {
-		// TODO Auto-generated method stub
-
+		// TODO Auto-generated method stub 
 	}
 
 	@Override
@@ -130,7 +127,6 @@ public class RentalPropertyView extends ViewPart implements ISelectionListener {
 				setRental((Rental)selected);
 			}
 		}
-		
 	}
 
-}
+} ///-END

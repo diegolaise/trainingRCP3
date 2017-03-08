@@ -4,8 +4,8 @@ package com.sogeti.rental.ui.views;
 
 public interface RentalUIConstants {
 	public static final String OBJETS_À_LOUER = "Objets à louer"; 
-	public static final String LOCATIONS = "Locations"; 
-	public static final String CUSTOMERS = "Customers";
+	public static final String LOCATIONS = "RENTAL"; 
+	public static final String CUSTOMERS = "CUSTOMERS";
 	
 	public enum IMG {
 		AGENCGY_IMG("icons/Agency.png", "AGENCY"),

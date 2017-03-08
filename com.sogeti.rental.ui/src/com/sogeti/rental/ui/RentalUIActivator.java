@@ -20,8 +20,6 @@ public class RentalUIActivator extends AbstractUIPlugin implements RentalUIConst
 	// The shared instance
 	private static RentalUIActivator plugin;
 	
-
-	
 	/**
 	 * The constructor
 	 */
