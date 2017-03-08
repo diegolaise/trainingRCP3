@@ -68,6 +68,8 @@ public class Activator extends AbstractUIPlugin implements RentalUIConstants {
 	
 	@Override
     protected void initializeImageRegistry(ImageRegistry reg) {
+		
+		//platform:/plugin/org.eclipse.wst.xmleditor.doc.user/images/doctype.gif
         Bundle b = FrameworkUtil.getBundle(this.getClass());
 	    for (IMG img : IMG.values()) {
 	    	 reg.put(img.name(), ImageDescriptor.createFromURL(b.getEntry(img.path())));
