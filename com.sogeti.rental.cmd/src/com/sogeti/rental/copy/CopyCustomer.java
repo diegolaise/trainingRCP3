@@ -20,7 +20,7 @@ public class CopyCustomer extends AbstractHandler implements IHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		System.out.println("Copy Customer");
+	
 		ISelection currentSelection = HandlerUtil.getCurrentSelection(event);
 		
 		if (currentSelection instanceof IStructuredSelection) {
@@ -30,10 +30,16 @@ public class CopyCustomer extends AbstractHandler implements IHandler {
 			 	Clipboard clipboard = new Clipboard(Display.getCurrent());
 				String textData = ((Customer)sel).getDisplayName();
 				String rtfData = "{\\rtf1\\b\\i "+textData+"}";
+				
 				TextTransfer textTransfer = TextTransfer.getInstance();
 				RTFTransfer rtfTransfer = RTFTransfer.getInstance();
-				Transfer[] transfers = new Transfer[]{textTransfer, rtfTransfer};
-				Object[] data = new Object[]{textData, rtfData};
+				
+				HTMLTransfer htmlTransfer = HTMLTransfer.getInstance();
+				String htmlData = "https://www.google.fr?"+textData; 
+				
+				Transfer[] transfers = new Transfer[]{textTransfer, rtfTransfer, htmlTransfer};
+				Object[] data = new Object[]{textData, rtfData, htmlData};
+				
 				clipboard.setContents(data, transfers);
 				clipboard.dispose();
 			}
