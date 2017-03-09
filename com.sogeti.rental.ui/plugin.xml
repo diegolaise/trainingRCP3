@@ -112,6 +112,19 @@
             </command>
          </menu>
       </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:com.sogeti.rental.ui.AgencyView?after=additions">
+         <menu
+               id="com.sogeti.rental.ui.textmenu4"
+               label="Hello">
+            <command
+                  commandId="com.sogeti.rental.ui.command.hello"
+                  style="push"
+                  tooltip="Show hello word">
+            </command>
+         </menu>
+      </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
