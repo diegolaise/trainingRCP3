@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="com.sogeti.rental.copy.CopyCustomer"
+            commandId="org.eclipse.ui.edit.copy">
+         <enabledWhen>
+            <reference
+                  definitionId="com.sogeti.rental.cmd.selectioncustomer">
+            </reference>
+         </enabledWhen>
+         <activeWhen>
+            <reference
+                  definitionId="com.sogeti.rental.cmd.selectioncustomer">
+            </reference>
+         </activeWhen>
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="com.sogeti.rental.cmd.selectioncustomer">
+         <iterate
+               ifEmpty="false">
+            <instanceof
+                  value="com.opcoach.training.rental.Customer">
+            </instanceof>
+         </iterate>
+      </definition>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:com.sogeti.rental.ui.AgencyView?after=additions">
+         <command
+               commandId="org.eclipse.ui.edit.copy"
+               label="Copy"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+
+</plugin>
