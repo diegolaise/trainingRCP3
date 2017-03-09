@@ -2,6 +2,9 @@ package com.sogeti.rental.ui.views;
 
 import java.util.Collection;
 
+import org.eclipse.jface.resource.ColorRegistry;
+import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.resource.StringConverter;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -11,16 +14,15 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 
 import com.opcoach.training.rental.Customer;
+import com.opcoach.training.rental.Rental;
 import com.opcoach.training.rental.RentalAgency;
 import com.opcoach.training.rental.RentalObject;
 import com.sogeti.rental.ui.RentalUIActivator; 
 
 public class RentalProvider extends LabelProvider implements ITreeContentProvider, IColorProvider, RentalUIConstants {
 
+	private static final Object[] EMPTY_RESULT = new  Object[0]; 
  
-	private static final Object[] EMPTY_RESULT = new  Object[0];
- 
-	
 	private class Node {
 		private RentalAgency _agency;
 		private String 		_label;
@@ -29,12 +31,16 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 		
 		public Node(RentalAgency ag, String lbl) {
 			_agency = ag;
-			_label = lbl; 
-			_img = IMG.getImg(_label);
-		}
+			_label  = lbl; 
+			_img    = IMG.getImg(_label);
+		} 
 		
 		public IMG getImage() {
 			return _img;
+		}
+		
+		public int getColor() {
+			return _img.getColor();
 		}
 		
 		public Object[] getChildren() {
@@ -44,7 +50,7 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 			if ( LOCATIONS.equals(_label) )
 				return _agency.getRentals().toArray();
 			
-			if ( OBJETS_À_LOUER.equals(_label) )
+			if ( OBJETS_A_LOUER.equals(_label) )
 				return _agency.getObjectsToRent().toArray();
 			
 			return EMPTY_RESULT;
@@ -72,7 +78,7 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 			RentalAgency ag  = (RentalAgency) parentElement;
 			return new Node[] { new Node(ag,  CUSTOMERS)
 						, new Node(ag,  LOCATIONS) 
-						, new Node(ag,  OBJETS_À_LOUER)
+						, new Node(ag,  OBJETS_A_LOUER)
 						};  
 		} 
 		
@@ -146,17 +152,29 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 		if (element instanceof RentalAgency) {
 			return Display.getCurrent().getSystemColor(SWT.COLOR_GREEN);
 		}
-//		
-//		if (element instanceof Node) {
-//			return Display.getCurrent().getSystemColor(SWT.COLOR_BLACK);
-//		} 
+		
+		String sColor = null;
+		
+		if (element instanceof Node) {
+			return Display.getCurrent().getSystemColor(((Node)element).getColor());
+		} 
  
 		if (element instanceof Customer) {
-			return Display.getCurrent().getSystemColor(SWT.COLOR_BLUE);
+			sColor = RentalUIActivator.getDefault().getPreferenceStore().getString(PREF_CUSTOMER_COLOR);			
 		}
 		
-		return Display.getCurrent().getSystemColor(SWT.COLOR_BLACK);
-	
+		else if (element instanceof RentalObject) { 
+			sColor = RentalUIActivator.getDefault().getPreferenceStore().getString(PREF_OBJECT_COLOR);
+		}
+		
+		else if (element instanceof Rental) { 
+			sColor = RentalUIActivator.getDefault().getPreferenceStore().getString(PREF_RENTAL_COLOR);
+		}
+		
+		if (sColor!=null)
+			return getAColor(sColor); 
+		
+		return Display.getCurrent().getSystemColor(SWT.COLOR_BLACK);	
 	}
 
 	@Override
@@ -165,5 +183,20 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 		return null;
 	}
 
+	/**
+	 * 
+	 * @param rgbKey
+	 * @return
+	 */
+	public static Color getAColor(String rgbKey) {
+		ColorRegistry cr = JFaceResources.getColorRegistry();
+		Color col = cr.get(rgbKey);
+		if (col == null) {
+			cr.put(rgbKey, StringConverter.asRGB(rgbKey));
+			col = cr.get(rgbKey);
+		}
+		
+		return col; 
+	}
 
 }

@@ -2,6 +2,8 @@ package com.sogeti.rental.ui.views;
 
 import java.util.Arrays;
 
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -11,15 +13,20 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.ui.IViewSite;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 
 import com.opcoach.training.rental.Customer;
 import com.opcoach.training.rental.RentalAgency;
 import com.opcoach.training.rental.RentalFactory;
-import com.sogeti.rental.core.RentalCoreActivator; 
+import com.sogeti.rental.core.RentalCoreActivator;
+import com.sogeti.rental.ui.RentalUIActivator; 
 
-public class AgencyView extends ViewPart {
+public class AgencyView extends ViewPart implements IPropertyChangeListener {
 
+	TreeViewer _treeView;
+			
 	public AgencyView() {
 		// TODO Auto-generated constructor stub
 	}
@@ -50,15 +57,15 @@ public class AgencyView extends ViewPart {
 		//button_1.setImage( Activator.getDefault().getImageRegistry().get(IMG.ICONS_COLLAPSE.name()) );
 		button_1.setToolTipText("Collapse All");
 				
-		TreeViewer tree = new TreeViewer(parent);
-		Tree tree_1 = tree.getTree();
+		_treeView = new TreeViewer(parent);
+		Tree tree_1 = _treeView.getTree();
 		tree_1.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		
 		RentalAgency a1 = RentalCoreActivator.getAgency();
 		
 		RentalProvider provider = new RentalProvider();
-		tree.setContentProvider(provider);
-		tree.setLabelProvider(provider);
+		_treeView.setContentProvider(provider);
+		_treeView.setLabelProvider(provider);
 		
 		//RentalAgency a2 = RentalAgencyGenerator.createSampleAgency(); 
 		RentalAgency a2 = RentalFactory.eINSTANCE.createRentalAgency();
@@ -68,25 +75,39 @@ public class AgencyView extends ViewPart {
 		c.setLastName("Name");
 		a2.getCustomers().add(c);
 		 
-		tree.setInput(Arrays.asList(new RentalAgency[] {a1, a2}));		
-		tree.expandAll();
+		_treeView.setInput(Arrays.asList(new RentalAgency[] {a1, a2}));		
+		_treeView.expandAll();
 		
 		button.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				tree.expandAll();
+				_treeView.expandAll();
 			}
 		});
 		button_1.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				tree.collapseAll();
+				_treeView.collapseAll();
 			}
 		});
 		
 		//Set provider to this
-		getSite().setSelectionProvider(tree);
+		getSite().setSelectionProvider(_treeView);
+	}
+	
+	public void init(IViewSite site) throws PartInitException{ 
+		super.init(site);  
+		RentalUIActivator.getDefault().getPreferenceStore().addPropertyChangeListener(this);
+	}
+	
+	public void dispose()  {  
+		RentalUIActivator.getDefault().getPreferenceStore().removePropertyChangeListener(this);
+		super.dispose();
 	}
 
-
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
+		_treeView.refresh();
+		_treeView.expandAll();
+	} 
 }

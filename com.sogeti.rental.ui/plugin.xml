@@ -32,5 +32,35 @@
             file="contexts.xml">
       </contexts>
    </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="com.sogeti.rental.ui.perspective.RentalPerspective"
+            icon="icons/Agency.png"
+            id="com.sogeti.rental.ui.perspective.RentalPerspective"
+            name="Rental">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="com.sogeti.rental.peferences"
+            class="com.sogeti.rental.ui.pref.RentalPreferencePage"
+            id="com.sogeti.rental.ui.preferences"
+            name="Rental">
+      </page>
+      <page
+            category="com.sogeti.rental.ui.preferences"
+            class="com.sogeti.rental.ui.pref.RentalColorPreferencePage"
+            id="com.sogeti.rental.ui.colorprefpage"
+            name="Color">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.sogeti.rental.ui.pref.PreferenceInitializer">
+      </initializer>
+   </extension>
 
 </plugin>
