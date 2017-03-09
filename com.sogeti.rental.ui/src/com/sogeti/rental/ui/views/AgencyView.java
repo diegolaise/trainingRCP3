@@ -2,6 +2,7 @@ package com.sogeti.rental.ui.views;
 
 import java.util.Arrays;
 
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -12,6 +13,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.PartInitException;
@@ -93,6 +95,11 @@ public class AgencyView extends ViewPart implements IPropertyChangeListener {
 		
 		//Set provider to this
 		getSite().setSelectionProvider(_treeView);
+		
+		MenuManager menuManager = new MenuManager();
+		Menu menu = menuManager.createContextMenu(_treeView.getControl());
+		_treeView.getControl().setMenu(menu);
+		getSite().registerContextMenu(menuManager, _treeView);
 	}
 	
 	public void init(IViewSite site) throws PartInitException{ 

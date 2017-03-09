@@ -62,5 +62,63 @@
             class="com.sogeti.rental.ui.pref.PreferenceInitializer">
       </initializer>
    </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="com.sogeti.rental.ui.handler.HelloHandler"
+            commandId="com.sogeti.rental.ui.command.hello">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               commandId="com.sogeti.rental.ui.command.hello"
+               id="com.sogeti.rental.ui.textmenu"
+               label="Hello">
+            <command
+                  commandId="com.sogeti.rental.ui.command.hello"
+                  style="push"
+                  tooltip="Show hello word">
+            </command>
+          
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.views.ResourceNavigator?after=additions">
+         <menu
+               id="com.sogeti.rental.ui.textmenu3"
+               label="Hello">
+            <command
+                  commandId="com.sogeti.rental.ui.command.hello"
+                  style="push"
+                  tooltip="Show hello word">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:com.sogeti.rental.ui.AgencyView?after=additions">
+         <menu
+               id="com.sogeti.rental.ui.textmenu2"
+               label="Hello">
+            <command
+                  commandId="com.sogeti.rental.ui.command.hello"
+                  style="push"
+                  tooltip="Show hello word">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="com.sogeti.rental.ui.command.hello"
+            name="Hello World">
+      </command>
+   </extension>
 
 </plugin>
