@@ -108,6 +108,5 @@ public class AgencyView extends ViewPart implements IPropertyChangeListener {
 	@Override
 	public void propertyChange(PropertyChangeEvent event) {
 		_treeView.refresh();
-		_treeView.expandAll();
 	} 
 }

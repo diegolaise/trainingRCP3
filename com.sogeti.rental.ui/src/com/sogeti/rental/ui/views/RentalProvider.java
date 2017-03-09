@@ -23,11 +23,15 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 
 	private static final Object[] EMPTY_RESULT = new  Object[0]; 
  
+	/**
+	 * 
+	 * @author mueloi
+	 *
+	 */
 	private class Node {
 		private RentalAgency _agency;
 		private String 		_label;
-		private IMG 		_img;
-		//private Color       _color;
+		private IMG 		_img; 
 		
 		public Node(RentalAgency ag, String lbl) {
 			_agency = ag;
@@ -58,7 +62,49 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 
 		public String getLabel() { 
 			return _label;
+		}
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + getOuterType().hashCode();
+			result = prime * result + ((_agency == null) ? 0 : _agency.hashCode());
+			result = prime * result + ((_img == null) ? 0 : _img.hashCode());
+			result = prime * result + ((_label == null) ? 0 : _label.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Node other = (Node) obj;
+			if (!getOuterType().equals(other.getOuterType()))
+				return false;
+			if (_agency == null) {
+				if (other._agency != null)
+					return false;
+			} else if (!_agency.equals(other._agency))
+				return false;
+			if (_img != other._img)
+				return false;
+			if (_label == null) {
+				if (other._label != null)
+					return false;
+			} else if (!_label.equals(other._label))
+				return false;
+			return true;
+		}
+
+		private RentalProvider getOuterType() {
+			return RentalProvider.this;
 		} 
+		
 	};
 
 
@@ -119,8 +165,6 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 		return element.toString();
 	}
 	
-
-	
 	/**
 	 * The <code>LabelProvider</code> implementation of this
 	 * <code>ILabelProvider</code> method returns <code>null</code>.
@@ -130,7 +174,7 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 	public Image getImage(Object element) {
 		IMG path = null;
 		if (element instanceof RentalAgency) {
-			path = IMG.AGENCGY_IMG;
+			path = IMG.AGENCGY_NODE;
 		}
 		
 		else if (element instanceof Node) {
@@ -150,15 +194,15 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 	public Color getForeground(Object element) { 
 		
 		if (element instanceof RentalAgency) {
-			return Display.getCurrent().getSystemColor(SWT.COLOR_GREEN);
-		}
-		
-		String sColor = null;
+			return Display.getCurrent().getSystemColor(IMG.AGENCGY_NODE.getColor());
+		} 
 		
 		if (element instanceof Node) {
 			return Display.getCurrent().getSystemColor(((Node)element).getColor());
 		} 
  
+		String sColor = null;
+		
 		if (element instanceof Customer) {
 			sColor = RentalUIActivator.getDefault().getPreferenceStore().getString(PREF_CUSTOMER_COLOR);			
 		}

@@ -17,15 +17,15 @@ public interface RentalUIConstants {
 
 	
 	public enum IMG {
-		AGENCGY_IMG("icons/Agency.png", AGENCY),
+		AGENCGY_NODE("icons/Agency.png", AGENCY, SWT.COLOR_BLACK),
 		USER_IMG("icons/User.png", USER),
 		
-		RENTAL_OBJECTS_IMG("icons/RentalObjects.png", OBJETS_A_LOUER, SWT.COLOR_DARK_GREEN), 
-		ICONS_RENTALS_PNG("icons/Rentals.png", LOCATIONS, SWT.COLOR_GREEN),
-		ICONS_CUSTOMERS_PNG("icons/Customers.png", CUSTOMERS, SWT.COLOR_BLUE)
+		RENTAL_OBJECTS_NODE("icons/RentalObjects.png", OBJETS_A_LOUER, SWT.COLOR_BLUE), 
+		RENTALS_NODE("icons/Rentals.png", LOCATIONS, SWT.COLOR_BLUE),
+		CUSTOMERS_NODE("icons/Customers.png", CUSTOMERS, SWT.COLOR_BLUE)
 		
-		, ICONS_EXPAND("icons/expand_all.png", "+")
-		, ICONS_COLLAPSE("icons/collapse_all.png", "-")
+		, ICON_EXPAND("icons/expand_all.png", "+")
+		, ICON_COLLAPSE("icons/collapse_all.png", "-")
 		;
 		private String _url;
 		private String _label;

@@ -44,7 +44,7 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            category="com.sogeti.rental.peferences"
+            category=""
             class="com.sogeti.rental.ui.pref.RentalPreferencePage"
             id="com.sogeti.rental.ui.preferences"
             name="Rental">
