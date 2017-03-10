@@ -189,14 +189,18 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 	public Color getForeground(Object element) { 
 		String palId = RentalUIActivator.getDefault().getPreferenceStore().getString(PREF_PALETTE);
 		Palette p = RentalUIActivator.getDefault().getPaletteManager().get(palId);
-		return p.getProvider().getForeground(element);
+		if (p!=null && p.getProvider()!=null)
+			return p.getProvider().getForeground(element);
+		return null;
 	}
 
 	@Override
 	public Color getBackground(Object element) {
 		String palId = RentalUIActivator.getDefault().getPreferenceStore().getString(PREF_PALETTE);
 		Palette p = RentalUIActivator.getDefault().getPaletteManager().get(palId);
-		return p.getProvider().getBackground(element);
+		if (p!=null && p.getProvider()!=null)
+			return p.getProvider().getBackground(element);
+		return null;
 	}
  
 }

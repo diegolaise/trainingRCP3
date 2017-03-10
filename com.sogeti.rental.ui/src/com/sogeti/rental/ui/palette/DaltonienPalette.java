@@ -15,12 +15,12 @@ public class DaltonienPalette implements IColorProvider, RentalUIConstants{
 
 	@Override
 	public Color getForeground(Object element) { 
-		return Display.getCurrent().getSystemColor(SWT.COLOR_GRAY);
+		return Display.getCurrent().getSystemColor(SWT.COLOR_YELLOW);
 	}
 
 	@Override
 	public Color getBackground(Object element) { 
-		return Display.getCurrent().getSystemColor(SWT.COLOR_YELLOW);
+		return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_BLUE);
 	}
 
 }
