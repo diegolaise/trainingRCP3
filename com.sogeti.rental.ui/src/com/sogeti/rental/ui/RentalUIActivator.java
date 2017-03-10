@@ -70,16 +70,16 @@ public class RentalUIActivator extends AbstractUIPlugin implements RentalUIConst
 		System.out.println("All palettes extensions: " + paletteManager);
 	}
 
-	// private void readDriverExtension() {
-	// IExtensionRegistry reg = Platform.getExtensionRegistry();
-	// for (IConfigurationElement e :
-	// reg.getConfigurationElementsFor("org.eclipse.ui.views")) {
-	// if (e.getName().equals("view")) {
-	// System.out.println("PlugIn: " + e.getNamespaceIdentifier()
-	// + "\tview: " + e.getAttribute("name"));
-	// }
-	// }
-	// }
+//	private void readDriverExtension() {
+//		IExtensionRegistry reg = Platform.getExtensionRegistry();
+//		for (IConfigurationElement e :
+//			reg.getConfigurationElementsFor("org.eclipse.ui.views")) {
+//			if (e.getName().equals("view")) {
+//				System.out.println("PlugIn: " + e.getNamespaceIdentifier()
+//				+ "\tview: " + e.getAttribute("name"));
+//			}
+//		}
+//	}
 
 	/*
 	 * (non-Javadoc)

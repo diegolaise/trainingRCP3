@@ -36,8 +36,9 @@ public class RentalColorPreferences extends FieldEditorPreferencePage implements
 			comboValues[i][1] = p.getId(); // Returned value if selected
 			i++;
 		}
-		addField(new ComboFieldEditor(PREF_PALETTE, "Palette :", comboValues, getFieldEditorParent()));
-
+		
+		ComboFieldEditor combo = new ComboFieldEditor(PREF_PALETTE, "Palette :", comboValues, getFieldEditorParent());
+		addField(combo); 
 	}
 
 	@Override

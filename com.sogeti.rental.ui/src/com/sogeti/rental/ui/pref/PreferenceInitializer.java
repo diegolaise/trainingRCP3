@@ -27,6 +27,9 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer impleme
 		store.setDefault(RentalUIConstants.PREF_CUSTOMER_COLOR, StringConverter.asString(new RGB(0, 153, 0)));
 		store.setDefault(RentalUIConstants.PREF_OBJECT_COLOR, StringConverter.asString(new RGB(255, 0, 0)));
 		store.setDefault(RentalUIConstants.PREF_RENTAL_COLOR, StringConverter.asString(new RGB(0, 0, 153)));
+		
+		//Add here default malette page
+		store.setDefault(RentalUIConstants.PREF_PALETTE, "com.sogeti.rental.ui.colorprefpage");
 	}
 
 }

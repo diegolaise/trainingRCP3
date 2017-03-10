@@ -55,7 +55,7 @@ public class DefaultPalette implements IColorProvider, RentalUIConstants {
 
 	@Override
 	public Color getBackground(Object element) { 
-		return Display.getCurrent().getSystemColor(SWT.COLOR_GRAY);
+		return Display.getCurrent().getSystemColor(SWT.COLOR_TRANSPARENT);
 	}
 
 	/**
