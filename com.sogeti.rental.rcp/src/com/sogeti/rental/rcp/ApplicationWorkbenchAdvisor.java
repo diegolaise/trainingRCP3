@@ -8,8 +8,6 @@ import com.sogeti.rental.ui.perspective.RentalPerspective;
 
 public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 
-	//private static final String PERSPECTIVE_ID = "com.sogeti.rental.rcp.perspective"; //$NON-NLS-1$
-
 	@Override
     public WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer) {
         return new ApplicationWorkbenchWindowAdvisor(configurer);
