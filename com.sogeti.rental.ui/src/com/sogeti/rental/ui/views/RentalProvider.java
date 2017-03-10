@@ -28,7 +28,7 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 	 * @author mueloi
 	 *
 	 */
-	private class Node {
+	public class Node {
 		private RentalAgency _agency;
 		private String 		_label;
 		private IMG 		_img; 

@@ -3,6 +3,10 @@ package com.sogeti.rental.ui.views;
 import org.eclipse.swt.SWT;
 
 public interface RentalUIConstants {
+	
+	public static final String PREF_PALETTE = "Palette ID";
+	
+	
 	public static final String OBJETS_A_LOUER = "Rental Objects"; 
 	public static final String LOCATIONS = "Rental"; 
 	public static final String CUSTOMERS = "Customers";

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="palette" name="palette" schema="schema/palette.exsd"/>
 
    <extension
          point="org.eclipse.ui.views">
@@ -50,10 +51,16 @@
             name="Rental">
       </page>
       <page
-            category="com.sogeti.rental.ui.preferences"
+            category="com.sogeti.rental.ui.palette"
             class="com.sogeti.rental.ui.pref.RentalColorPreferencePage"
             id="com.sogeti.rental.ui.colorprefpage"
-            name="Color">
+            name="Default Palette">
+      </page>
+      <page
+            category="com.sogeti.rental.ui.preferences"
+            class="com.sogeti.rental.ui.pref.RentalColorPreferences"
+            id="com.sogeti.rental.ui.palette"
+            name="Palettes">
       </page>
    </extension>
    <extension
@@ -129,6 +136,19 @@
             id="com.sogeti.rental.ui.command.hello"
             name="Hello World">
       </command>
+   </extension>
+   <extension
+         point="com.sogeti.rental.ui.palette">
+      <palette
+            id="com.sogeti.rental.ui.palette.default"
+            name="Default"
+            paletteClass="com.sogeti.rental.ui.palette.DefaultPalette">
+      </palette>
+      <palette
+            id="com.sogeti.rental.ui.palette.daltonien"
+            name="Daltonien"
+            paletteClass="com.sogeti.rental.ui.palette.DaltonienPalette">
+      </palette>
    </extension>
 
 </plugin>
